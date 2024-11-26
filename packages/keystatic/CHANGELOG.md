@@ -1,5 +1,16 @@
 # @keystatic/core
 
+## 0.5.42
+
+### Patch Changes
+
+- [#1363](https://github.com/Thinkmill/keystatic/pull/1363) [`0b0864f`](https://github.com/Thinkmill/keystatic/commit/0b0864f55d2893fecbc4cbdaa88a306f84e6f1dd) Thanks [@jossmac](https://github.com/jossmac)! - Expose `FieldDescription` from "@keystar/ui/field" package.
+
+- [#1360](https://github.com/Thinkmill/keystatic/pull/1360) [`0d69577`](https://github.com/Thinkmill/keystatic/commit/0d69577c4b6dbfdc6f447e3aab7bd8ce7e254f0c) Thanks [@tordans](https://github.com/tordans)! - Add link to created GitHub App in generated `.env`
+
+- Updated dependencies [[`0b0864f`](https://github.com/Thinkmill/keystatic/commit/0b0864f55d2893fecbc4cbdaa88a306f84e6f1dd)]:
+  - @keystar/ui@0.7.14
+
 ## 0.5.41
 
 ### Patch Changes

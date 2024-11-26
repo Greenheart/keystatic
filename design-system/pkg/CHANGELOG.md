@@ -1,5 +1,11 @@
 # @keystar/ui
 
+## 0.7.14
+
+### Patch Changes
+
+- [#1363](https://github.com/Thinkmill/keystatic/pull/1363) [`0b0864f`](https://github.com/Thinkmill/keystatic/commit/0b0864f55d2893fecbc4cbdaa88a306f84e6f1dd) Thanks [@jossmac](https://github.com/jossmac)! - Expose `FieldDescription` from "@keystar/ui/field" package.
+
 ## 0.7.13
 
 ### Patch Changes
