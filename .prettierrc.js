@@ -1,0 +1,16 @@
+export default {
+  arrowParens: 'avoid',
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'es5',
+  proseWrap: 'always',
+  useTabs: false,
+  overrides: [
+    {
+      files: '**/CHANGELOG.md',
+      options: {
+        proseWrap: 'never',
+      },
+    },
+  ],
+};

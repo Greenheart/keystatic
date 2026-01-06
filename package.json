@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "packageManager": "pnpm@9.15.5",
+  "packageManager": "pnpm@10.27.0",
   "engines": {
-    "pnpm": "9.15.5"
+    "pnpm": "10.27.0"
   },
   "scripts": {
     "build:docs": "pnpm --filter=keystatic-docs build",
@@ -41,43 +41,6 @@
     "validate": "pnpm run '/check:*/'",
     "version-packages": "changeset version && pnpm i --frozen-lockfile=false && pnpm run format \"**/CHANGELOG.md\""
   },
-  "dependencies": {
-    "@babel/core": "^7.23.0",
-    "@babel/plugin-transform-runtime": "^7.22.15",
-    "@babel/preset-env": "^7.22.20",
-    "@babel/preset-react": "^7.22.15",
-    "@babel/preset-typescript": "^7.23.0",
-    "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.7",
-    "@manypkg/cli": "^0.21.3",
-    "@preconstruct/cli": "^2.8.11",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/eslint": "^8.4.3",
-    "@types/node": "22.13.1",
-    "@typescript-eslint/eslint-plugin": "^5.29.0",
-    "@typescript-eslint/parser": "^5.29.0",
-    "babel-plugin-react-compiler": "^0.0.0-experimental-696af53-20240625",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.18.0",
-    "eslint-config-next": "^12.1.6",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jest": "^26.5.3",
-    "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-compiler": "^0.0.0-experimental-0998c1e-20240625",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "jest": "^30.0.0-alpha.2",
-    "jest-environment-jsdom": "^30.0.0-alpha.2",
-    "prettier": "^3.0.3",
-    "prettier-plugin-packagejson": "^2.2.18",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tsx": "^4.8.2",
-    "typescript": "^5.5.3"
-  },
   "manypkg": {
     "ignoredRules": [
       "INVALID_DEV_AND_PEER_DEPENDENCY_RELATIONSHIP"
@@ -98,5 +61,41 @@
       "distInRoot": true,
       "checkTypeDependencies": true
     }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/plugin-transform-runtime": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
+    "@manypkg/cli": "^0.25.1",
+    "@preconstruct/cli": "^2.8.12",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/eslint": "^9.6.1",
+    "@types/node": "25.0.3",
+    "babel-plugin-react-compiler": "1.0.0",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.12.1",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-compiler": "19.1.0-rc.2",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsx": "^4.8.2",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.52.0"
   }
 }

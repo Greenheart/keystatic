@@ -1,6 +1,7 @@
-const defaultPrettierConfig = require('../.prettierrc.json');
+import defaultPrettierConfig from '../.prettierrc.js'
 
-module.exports = {
+/** @type {import('prettier').Config} */
+export default {
   ...defaultPrettierConfig,
   plugins: [
     ...(defaultPrettierConfig.plugins || []),
