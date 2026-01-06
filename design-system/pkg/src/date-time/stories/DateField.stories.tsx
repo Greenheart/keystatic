@@ -271,8 +271,8 @@ const calendars = [
 ];
 
 function Example<T extends DateValue>(props: DateFieldProps<T>) {
-  let [locale, setLocale] = React.useState<Key>('');
-  let [calendar, setCalendar] = React.useState<Key>(calendars[0].key);
+  let [locale, setLocale] = React.useState<Key | null>('');
+  let [calendar, setCalendar] = React.useState<Key | null>(calendars[0].key);
   let { locale: defaultLocale } = useLocale();
 
   let pref = preferences.find(p => p.locale === locale);
@@ -292,7 +292,7 @@ function Example<T extends DateValue>(props: DateFieldProps<T>) {
     [preferredCalendars]
   );
 
-  let updateLocale = (locale: Key) => {
+  let updateLocale = (locale: Key | null) => {
     setLocale(locale);
     let pref = preferences.find(p => p.locale === locale);
     setCalendar(pref!.ordering.split(' ')[0]);
