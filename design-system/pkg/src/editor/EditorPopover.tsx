@@ -77,19 +77,15 @@ export const EditorPopover = forwardRef<EditorPopoverRef, EditorPopoverProps>(
     const [floating, setFloating] = useState<HTMLDivElement | null>(null);
     const middleware = getMiddleware(props);
     const { floatingStyles, context, update } = useFloating({
-      elements: { reference, floating },
+      elements: { reference: reference as Element, floating },
       middleware,
       placement,
       whileElementsMounted: autoUpdate,
     });
 
-    useImperativeHandle(
-      forwardedRef,
-      () => {
-        return { context, update };
-      },
-      [context, update]
-    );
+    useImperativeHandle(forwardedRef, () => {
+      return { context, update };
+    }, [context, update]);
 
     return (
       <Wrapper>
