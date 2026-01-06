@@ -240,7 +240,7 @@ function OnRemoveExample(props: any) {
     { id: 6, label: 'Shy tag' },
   ]);
 
-  let onRemove = (key: Key) => {
+  let onRemove = (key: Key | undefined) => {
     setItems(prevItems => prevItems.filter(item => key !== item.id));
     action('onRemove')(key);
   };
