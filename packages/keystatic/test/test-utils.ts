@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import nonPromiseFs from 'fs';
 import outdent from 'outdent';
 import fastGlob from 'fast-glob';
-import onExit from 'signal-exit';
+import { onExit } from 'signal-exit';
 import { tmpdir } from 'os';
 import { randomUUID } from 'crypto';
 import { expect } from '@jest/globals';
