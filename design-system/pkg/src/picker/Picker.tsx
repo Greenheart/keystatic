@@ -108,7 +108,7 @@ function Picker<T extends object>(
     onResize: onResize,
   });
 
-  useLayoutEffect(onResize, [scale, state.selectedKey, onResize]);
+  useLayoutEffect(onResize, [scale, state.selectedItems[0]?.key, onResize]);
 
   let overlay;
   if (isMobile) {
@@ -141,7 +141,9 @@ function Picker<T extends object>(
     );
   }
 
-  let contents = state.selectedItem ? state.selectedItem.rendered : placeholder;
+  let contents = state.selectedItems[0]
+    ? state.selectedItems[0].rendered
+    : placeholder;
   if (isReactText(contents)) {
     contents = <Text>{contents}</Text>;
   }
@@ -185,7 +187,7 @@ function Picker<T extends object>(
               text: {
                 ...valueProps,
                 // when no item is selected, we're styling the placeholder
-                color: !state.selectedItem ? 'neutralSecondary' : 'inherit',
+                color: !state.selectedItems[0] ? 'neutralSecondary' : 'inherit',
                 // weight: state.selectedItem ? 'medium' : undefined,
               },
               // we try to maintain most of the selected item's rendered content
