@@ -54,7 +54,7 @@
     "@types/node": "25.0.3",
     "@types/react": "^19.2.7",
     "babel-loader": "^8.4.1",
-    "playroom": "^0.28.2",
+    "playroom": "^1.0.5",
     "storybook": "^7.6.21",
     "storybook-dark-mode": "^3.0.3",
     "typescript": "^5.9.3",
