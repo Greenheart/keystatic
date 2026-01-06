@@ -15,7 +15,7 @@
     "check:lint": "eslint",
     "check:packages": "preconstruct validate",
     "check:types": "tsc",
-    "clean": "git clean -fXd",
+    "clean": "git clean -fXd",  
     "docs": "pnpm --filter=keystatic-docs dev",
     "dev:create": "pnpm --filter=create dev",
     "dev:localization": "pnpm --filter=localization dev",
@@ -92,10 +92,10 @@
     "jest-environment-jsdom": "^30.2.0",
     "prettier": "^3.7.4",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tsx": "^4.8.2",
-    "typescript": "^5.5.3",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.52.0"
   },
   "type": "module"
