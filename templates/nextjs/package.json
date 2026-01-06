@@ -15,13 +15,13 @@
   "dependencies": {
     "@keystatic/core": "workspace:^",
     "@keystatic/next": "workspace:^",
-    "@markdoc/markdoc": "^0.4.0",
-    "next": "~15.1.10",
+    "@markdoc/markdoc": "^0.5.4",
+    "next": "~15.1.11",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@types/react": "^19.0.8",
+    "@types/react": "^19.2.7",
     "typescript": "^5.9.3"
   }
 }

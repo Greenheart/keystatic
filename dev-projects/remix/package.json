@@ -13,17 +13,17 @@
   "dependencies": {
     "@keystatic/core": "workspace:^",
     "@keystatic/remix": "workspace:^",
-    "@remix-run/node": "^2.9.2",
-    "@remix-run/react": "^2.9.2",
-    "@remix-run/serve": "^2.9.2",
-    "isbot": "^3.6.8",
+    "@remix-run/node": "^2.17.2",
+    "@remix-run/react": "^2.17.2",
+    "@remix-run/serve": "^2.17.2",
+    "isbot": "^3.8.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "@remix-run/dev": "^2.9.2",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
+    "@remix-run/dev": "^2.17.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3"
   },

@@ -28,11 +28,11 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.3",
+    "@babel/runtime": "^7.28.4",
     "@clack/prompts": "^0.6.3",
-    "@types/tar": "^6.1.5",
-    "node-fetch-native": "^1.2.0",
-    "picocolors": "^1.0.0",
-    "tar": "^6.1.15"
+    "@types/tar": "^6.1.13",
+    "node-fetch-native": "^1.6.7",
+    "picocolors": "^1.1.1",
+    "tar": "^6.2.1"
   }
 }

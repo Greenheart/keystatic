@@ -15,7 +15,7 @@
     "check:lint": "eslint",
     "check:packages": "preconstruct validate",
     "check:types": "tsc",
-    "clean": "git clean -fXd",  
+    "clean": "git clean -fXd",
     "docs": "pnpm --filter=keystatic-docs dev",
     "dev:create": "pnpm --filter=create dev",
     "dev:localization": "pnpm --filter=localization dev",
