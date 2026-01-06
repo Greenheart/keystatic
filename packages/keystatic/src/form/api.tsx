@@ -107,7 +107,7 @@ export type AssetFormField<
   parse(
     value: FormFieldStoredValue,
     extra: {
-      asset: Uint8Array | undefined;
+      asset: Uint8Array<ArrayBuffer> | undefined;
       slug: string | undefined;
     }
   ): ParsedValue;
@@ -119,7 +119,7 @@ export type AssetFormField<
     }
   ): {
     value: FormFieldStoredValue;
-    asset: { content: Uint8Array; filename: string } | undefined;
+    asset: { content: Uint8Array<ArrayBuffer>; filename: string } | undefined;
   };
 
   validate(value: ParsedValue): ValidatedValue;
@@ -155,8 +155,8 @@ export type AssetsFormField<
     }
   ): {
     value: FormFieldStoredValue;
-    other: ReadonlyMap<string, Uint8Array>;
-    external: ReadonlyMap<string, ReadonlyMap<string, Uint8Array>>;
+    other: ReadonlyMap<string, Uint8Array<ArrayBuffer>>;
+    external: ReadonlyMap<string, ReadonlyMap<string, Uint8Array<ArrayBuffer>>>;
   };
 
   validate(value: ParsedValue): ValidatedValue;
@@ -184,7 +184,7 @@ export type ContentFormField<
   parse(
     value: FormFieldStoredValue,
     args: {
-      content: Uint8Array | undefined;
+      content: Uint8Array<ArrayBuffer> | undefined;
       other: ReadonlyMap<string, Uint8Array>;
       external: ReadonlyMap<string, ReadonlyMap<string, Uint8Array>>;
       slug: string | undefined;
@@ -197,9 +197,9 @@ export type ContentFormField<
     }
   ): {
     value: FormFieldStoredValue;
-    content: Uint8Array | undefined;
-    other: ReadonlyMap<string, Uint8Array>;
-    external: ReadonlyMap<string, ReadonlyMap<string, Uint8Array>>;
+    content: Uint8Array<ArrayBuffer> | undefined;
+    other: ReadonlyMap<string, Uint8Array<ArrayBuffer>>;
+    external: ReadonlyMap<string, ReadonlyMap<string, Uint8Array<ArrayBuffer>>>;
   };
 
   validate(value: ParsedValue): ValidatedValue;
@@ -207,7 +207,7 @@ export type ContentFormField<
     parse(
       value: FormFieldStoredValue,
       extra: {
-        content: Uint8Array | undefined;
+        content: Uint8Array<ArrayBuffer> | undefined;
       }
     ): ReaderValue;
   };
@@ -436,14 +436,14 @@ export type GenericPreviewProps<
 > = Schema extends ChildField
   ? ChildFieldPreviewProps<Schema, ChildFieldElement>
   : Schema extends FormField<any, any, any>
-  ? FormFieldPreviewProps<Schema>
-  : Schema extends ObjectField<any>
-  ? ObjectFieldPreviewProps<Schema, ChildFieldElement>
-  : Schema extends ConditionalField<any, any>
-  ? ConditionalFieldPreviewProps<Schema, ChildFieldElement>
-  : Schema extends ArrayField<any>
-  ? ArrayFieldPreviewProps<Schema, ChildFieldElement>
-  : never;
+    ? FormFieldPreviewProps<Schema>
+    : Schema extends ObjectField<any>
+      ? ObjectFieldPreviewProps<Schema, ChildFieldElement>
+      : Schema extends ConditionalField<any, any>
+        ? ConditionalFieldPreviewProps<Schema, ChildFieldElement>
+        : Schema extends ArrayField<any>
+          ? ArrayFieldPreviewProps<Schema, ChildFieldElement>
+          : never;
 
 export type PreviewProps<Schema extends ComponentSchema> = GenericPreviewProps<
   Schema,
@@ -455,42 +455,43 @@ export type InitialOrUpdateValueFromComponentPropField<
 > = Schema extends ChildField
   ? undefined
   : Schema extends FormField<infer ParsedValue, any, any>
-  ? ParsedValue | undefined
-  : Schema extends ObjectField<infer Value>
-  ? {
-      readonly [Key in keyof Value]?: InitialOrUpdateValueFromComponentPropField<
-        Value[Key]
-      >;
-    }
-  : Schema extends ConditionalField<infer DiscriminantField, infer Values>
-  ? {
-      readonly [Key in keyof Values]: {
-        readonly discriminant: DiscriminantStringToDiscriminantValue<
-          DiscriminantField,
-          Key
-        >;
-        readonly value?: InitialOrUpdateValueFromComponentPropField<
-          Values[Key]
-        >;
-      };
-    }[keyof Values]
-  : Schema extends ArrayField<infer ElementField>
-  ? readonly {
-      key: string | undefined;
-      value?: InitialOrUpdateValueFromComponentPropField<ElementField>;
-    }[]
-  : never;
+    ? ParsedValue | undefined
+    : Schema extends ObjectField<infer Value>
+      ? {
+          readonly [Key in keyof Value]?: InitialOrUpdateValueFromComponentPropField<
+            Value[Key]
+          >;
+        }
+      : Schema extends ConditionalField<infer DiscriminantField, infer Values>
+        ? {
+            readonly [Key in keyof Values]: {
+              readonly discriminant: DiscriminantStringToDiscriminantValue<
+                DiscriminantField,
+                Key
+              >;
+              readonly value?: InitialOrUpdateValueFromComponentPropField<
+                Values[Key]
+              >;
+            };
+          }[keyof Values]
+        : Schema extends ArrayField<infer ElementField>
+          ? readonly {
+              key: string | undefined;
+              value?: InitialOrUpdateValueFromComponentPropField<ElementField>;
+            }[]
+          : never;
 
 type DiscriminantStringToDiscriminantValue<
   DiscriminantField extends FormField<any, any, any>,
   DiscriminantString extends PropertyKey,
-> = ReturnType<DiscriminantField['defaultValue']> extends boolean
-  ? 'true' extends DiscriminantString
-    ? true
-    : 'false' extends DiscriminantString
-    ? false
-    : never
-  : DiscriminantString & string;
+> =
+  ReturnType<DiscriminantField['defaultValue']> extends boolean
+    ? 'true' extends DiscriminantString
+      ? true
+      : 'false' extends DiscriminantString
+        ? false
+        : never
+    : DiscriminantString & string;
 
 export type PreviewPropsForToolbar<Schema extends ComponentSchema> =
   GenericPreviewProps<Schema, undefined>;
@@ -540,80 +541,83 @@ export type ParsedValueForComponentSchema<Schema extends ComponentSchema> =
   Schema extends ChildField
     ? null
     : Schema extends FormField<infer Value, any, any>
-    ? Value
-    : Schema extends ObjectField<infer Value>
-    ? {
-        readonly [Key in keyof Value]: ParsedValueForComponentSchema<
-          Value[Key]
-        >;
-      }
-    : Schema extends ConditionalField<infer DiscriminantField, infer Values>
-    ? {
-        readonly [Key in keyof Values]: {
-          readonly discriminant: DiscriminantStringToDiscriminantValue<
-            DiscriminantField,
-            Key
-          >;
-          readonly value: ParsedValueForComponentSchema<Values[Key]>;
-        };
-      }[keyof Values]
-    : Schema extends ArrayField<infer ElementField>
-    ? readonly ParsedValueForComponentSchema<ElementField>[]
-    : never;
+      ? Value
+      : Schema extends ObjectField<infer Value>
+        ? {
+            readonly [Key in keyof Value]: ParsedValueForComponentSchema<
+              Value[Key]
+            >;
+          }
+        : Schema extends ConditionalField<infer DiscriminantField, infer Values>
+          ? {
+              readonly [Key in keyof Values]: {
+                readonly discriminant: DiscriminantStringToDiscriminantValue<
+                  DiscriminantField,
+                  Key
+                >;
+                readonly value: ParsedValueForComponentSchema<Values[Key]>;
+              };
+            }[keyof Values]
+          : Schema extends ArrayField<infer ElementField>
+            ? readonly ParsedValueForComponentSchema<ElementField>[]
+            : never;
 
 export type ValueForReading<Schema extends ComponentSchema> =
   Schema extends ChildField
     ? null
     : Schema extends ContentFormField<any, any, infer Value>
-    ? () => Promise<Value>
-    : Schema extends BasicFormField<any, any, infer Value>
-    ? Value
-    : Schema extends SlugFormField<any, any, infer Value, any>
-    ? Value
-    : Schema extends AssetFormField<any, any, infer Value>
-    ? Value
-    : Schema extends AssetsFormField<any, any, infer Value>
-    ? Value
-    : Schema extends ObjectField<infer Value>
-    ? {
-        readonly [Key in keyof Value]: ValueForReading<Value[Key]>;
-      }
-    : Schema extends ConditionalField<infer DiscriminantField, infer Values>
-    ? {
-        readonly [Key in keyof Values]: {
-          readonly discriminant: DiscriminantStringToDiscriminantValue<
-            DiscriminantField,
-            Key
-          >;
-          readonly value: ValueForReading<Values[Key]>;
-        };
-      }[keyof Values]
-    : Schema extends ArrayField<infer ElementField>
-    ? readonly ValueForReading<ElementField>[]
-    : never;
+      ? () => Promise<Value>
+      : Schema extends BasicFormField<any, any, infer Value>
+        ? Value
+        : Schema extends SlugFormField<any, any, infer Value, any>
+          ? Value
+          : Schema extends AssetFormField<any, any, infer Value>
+            ? Value
+            : Schema extends AssetsFormField<any, any, infer Value>
+              ? Value
+              : Schema extends ObjectField<infer Value>
+                ? {
+                    readonly [Key in keyof Value]: ValueForReading<Value[Key]>;
+                  }
+                : Schema extends ConditionalField<
+                      infer DiscriminantField,
+                      infer Values
+                    >
+                  ? {
+                      readonly [Key in keyof Values]: {
+                        readonly discriminant: DiscriminantStringToDiscriminantValue<
+                          DiscriminantField,
+                          Key
+                        >;
+                        readonly value: ValueForReading<Values[Key]>;
+                      };
+                    }[keyof Values]
+                  : Schema extends ArrayField<infer ElementField>
+                    ? readonly ValueForReading<ElementField>[]
+                    : never;
 
 export type ValueForReadingDeep<Schema extends ComponentSchema> =
   Schema extends ChildField
     ? null
     : Schema extends FormField<any, any, infer Value>
-    ? Value
-    : Schema extends ObjectField<infer Value>
-    ? {
-        readonly [Key in keyof Value]: ValueForReadingDeep<Value[Key]>;
-      }
-    : Schema extends ConditionalField<infer DiscriminantField, infer Values>
-    ? {
-        readonly [Key in keyof Values]: {
-          readonly discriminant: DiscriminantStringToDiscriminantValue<
-            DiscriminantField,
-            Key
-          >;
-          readonly value: ValueForReadingDeep<Values[Key]>;
-        };
-      }[keyof Values]
-    : Schema extends ArrayField<infer ElementField>
-    ? readonly ValueForReadingDeep<ElementField>[]
-    : never;
+      ? Value
+      : Schema extends ObjectField<infer Value>
+        ? {
+            readonly [Key in keyof Value]: ValueForReadingDeep<Value[Key]>;
+          }
+        : Schema extends ConditionalField<infer DiscriminantField, infer Values>
+          ? {
+              readonly [Key in keyof Values]: {
+                readonly discriminant: DiscriminantStringToDiscriminantValue<
+                  DiscriminantField,
+                  Key
+                >;
+                readonly value: ValueForReadingDeep<Values[Key]>;
+              };
+            }[keyof Values]
+          : Schema extends ArrayField<infer ElementField>
+            ? readonly ValueForReadingDeep<ElementField>[]
+            : never;
 
 export type InferRenderersForComponentBlocks<
   ComponentBlocks extends Record<string, ComponentBlock<any>>,

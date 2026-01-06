@@ -41,19 +41,21 @@ type OptionalChain<
 
 export type Entry<
   CollectionOrSingleton extends Collection<any, any> | Singleton<any>,
-> = CollectionOrSingleton extends Collection<infer Schema, infer SlugField>
-  ? CollectionEntry<Schema, SlugField>
-  : CollectionOrSingleton extends Singleton<infer Schema>
-  ? SingletonEntry<Schema>
-  : never;
+> =
+  CollectionOrSingleton extends Collection<infer Schema, infer SlugField>
+    ? CollectionEntry<Schema, SlugField>
+    : CollectionOrSingleton extends Singleton<infer Schema>
+      ? SingletonEntry<Schema>
+      : never;
 
 export type EntryWithResolvedLinkedFiles<
   CollectionOrSingleton extends Collection<any, any> | Singleton<any>,
-> = CollectionOrSingleton extends Collection<infer Schema, infer SlugField>
-  ? CollectionEntryWithResolvedLinkedFiles<Schema, SlugField>
-  : CollectionOrSingleton extends Singleton<infer Schema>
-  ? SingletonEntryWithResolvedLinkedFiles<Schema>
-  : never;
+> =
+  CollectionOrSingleton extends Collection<infer Schema, infer SlugField>
+    ? CollectionEntryWithResolvedLinkedFiles<Schema, SlugField>
+    : CollectionOrSingleton extends Singleton<infer Schema>
+      ? SingletonEntryWithResolvedLinkedFiles<Schema>
+      : never;
 
 type CollectionEntryWithResolvedLinkedFiles<
   Schema extends Record<string, ComponentSchema>,
@@ -328,9 +330,9 @@ const readItem = cache(async function readItem(
     if (slugInfo[2] === '*' && split.length !== 1) return null;
     if (split.includes('..') || split.includes('.')) return null;
   }
-  const dataFile = await fsReader.readFile(
+  const dataFile = (await fsReader.readFile(
     getEntryDataFilepath(itemDir, formatInfo)
-  );
+  )) as Uint8Array<ArrayBuffer>;
   if (dataFile === null) return null;
 
   const { loaded, extraFakeFile } = loadDataFile(dataFile, formatInfo);
@@ -351,15 +353,16 @@ const readItem = cache(async function readItem(
         if (schema.formKind === 'content') {
           contentFieldPathsToEagerlyResolve?.push(path);
           return async () => {
-            let content: undefined | Uint8Array;
+            let content: undefined | Uint8Array<ArrayBuffer>;
             const filename =
               pathWithArrayFieldSlugs.join('/') + schema.contentExtension;
             if (filename === extraFakeFile?.path) {
               content = extraFakeFile.contents;
             } else {
               content =
-                (await fsReader.readFile(`${itemDir}/${filename}`)) ??
-                undefined;
+                ((await fsReader.readFile(
+                  `${itemDir}/${filename}`
+                )) as Uint8Array<ArrayBuffer>) ?? undefined;
             }
 
             return schema.reader.parse(value, { content });

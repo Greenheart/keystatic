@@ -55,7 +55,7 @@ export function parseEntry(
   files: Map<string, Uint8Array>
 ) {
   const dataFilepath = getEntryDataFilepath(args.dirpath, args.format);
-  const data = files.get(dataFilepath);
+  const data = files.get(dataFilepath) as Uint8Array<ArrayBuffer>;
   if (!data) {
     throw new Error(`Could not find data file at ${dataFilepath}`);
   }
@@ -77,7 +77,7 @@ export function parseEntry(
 
   const getFile = (filepath: string) => {
     usedFiles.add(filepath);
-    return filesWithFakeFile.get(filepath);
+    return filesWithFakeFile.get(filepath) as Uint8Array<ArrayBuffer>;
   };
   const getFilesForAssetsOrContentField = (
     rootPath: string,
@@ -280,7 +280,7 @@ export function useItemData(args: UseItemDataArgs) {
         });
 
       if (
-        allBlobs.every((x): x is readonly [string, Uint8Array] =>
+        allBlobs.every((x): x is readonly [string, Uint8Array<ArrayBuffer>] =>
           Array.isArray(x)
         )
       ) {
@@ -366,8 +366,8 @@ export function fetchBlob(
   filepath: string,
   commitSha: string,
   repoInfo: { owner: string; name: string; isPrivate: boolean } | null
-): MaybePromise<Uint8Array> {
-  if (blobCache.has(oid)) return blobCache.get(oid)!;
+): MaybePromise<Uint8Array<ArrayBuffer>> {
+  if (blobCache.has(oid)) return blobCache.get(oid)! as Uint8Array<ArrayBuffer>;
 
   const promise = (async () => {
     const isLocal = config.storage.kind === 'local';

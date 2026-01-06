@@ -4,7 +4,7 @@ import { webcrypto } from '#webcrypto';
 const encoder = new TextEncoder();
 const decoder = new TextDecoder();
 
-async function deriveKey(secret: string, salt: Uint8Array) {
+async function deriveKey(secret: string, salt: Uint8Array<ArrayBuffer>) {
   if (secret.length < 32) {
     throw new Error('KEYSTATIC_SECRET must be at least 32 characters long');
   }

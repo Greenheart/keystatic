@@ -17,6 +17,7 @@ import { expect } from '@jest/globals';
 import { ConfigContext } from '../../../../../app/shell/context';
 import { config } from '../../../../..';
 
+// @ts-expect-error printShadowRoot is defined in @vitest/pretty-format but missing in @jest/globals
 expect.addSnapshotSerializer(plugins.ReactElement);
 
 // this polyfill is because jsdom doesn't have it and @floating-ui/react uses it

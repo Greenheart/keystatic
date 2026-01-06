@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export const FileFieldDemo = () => {
   const [value, setValue] = useState<{
-    data: Uint8Array;
+    data: Uint8Array<ArrayBuffer>;
     extension: string;
     filename: string;
   } | null>(null);

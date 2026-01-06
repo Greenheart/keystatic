@@ -103,7 +103,7 @@ export function toMarkdocDocument(
   }
 ) {
   const extraFiles: {
-    contents: Uint8Array;
+    contents: Uint8Array<ArrayBuffer>;
     path: string;
     parent: string | undefined;
   }[] = [];

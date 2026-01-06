@@ -14,7 +14,7 @@ export function serializeProps(
   const extraFiles: {
     path: string;
     parent: string | undefined;
-    contents: Uint8Array;
+    contents: Uint8Array<ArrayBuffer>;
   }[] = [];
   return {
     value: transformProps(rootSchema, rootValue, {
@@ -42,7 +42,9 @@ export function serializeProps(
           return forYaml;
         }
         if (schema.formKind === 'content' || schema.formKind === 'assets') {
-          let other: ReadonlyMap<string, Uint8Array>, external, forYaml;
+          let other: ReadonlyMap<string, Uint8Array<ArrayBuffer>>,
+            external,
+            forYaml;
           if (schema.formKind === 'content') {
             const out = schema.serialize(value, { slug });
             if (out.content) {

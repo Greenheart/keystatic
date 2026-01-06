@@ -57,8 +57,8 @@ export function serializeFromEditorState(
   value: EditorState,
   slug: string | undefined
 ) {
-  const other = new Map<string, Uint8Array>();
-  const external = new Map<string, Map<string, Uint8Array>>();
+  const other = new Map<string, Uint8Array<ArrayBuffer>>();
+  const external = new Map<string, Map<string, Uint8Array<ArrayBuffer>>>();
   const markdocNode = proseMirrorToMarkdoc(value.doc, {
     extraFiles: other,
     otherFiles: external,
@@ -97,8 +97,8 @@ export function serializeFromEditorStateMDX(
   value: EditorState,
   slug: string | undefined
 ) {
-  const other = new Map<string, Uint8Array>();
-  const external = new Map<string, Map<string, Uint8Array>>();
+  const other = new Map<string, Uint8Array<ArrayBuffer>>();
+  const external = new Map<string, Map<string, Uint8Array<ArrayBuffer>>>();
   const mdxNode = proseMirrorToMDXRoot(value.doc, {
     extraFiles: other,
     otherFiles: external,

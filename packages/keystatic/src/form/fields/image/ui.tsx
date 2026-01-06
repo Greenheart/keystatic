@@ -29,7 +29,7 @@ export function getUploadedFileObject(
 
 export async function getUploadedFile(
   accept: string
-): Promise<{ content: Uint8Array; filename: string } | undefined> {
+): Promise<{ content: Uint8Array<ArrayBuffer>; filename: string } | undefined> {
   const file = await getUploadedFileObject(accept);
   if (!file) return undefined;
   return {
@@ -39,13 +39,13 @@ export async function getUploadedFile(
 }
 
 export function getUploadedImage(): Promise<
-  { content: Uint8Array; filename: string } | undefined
+  { content: Uint8Array<ArrayBuffer>; filename: string } | undefined
 > {
   return getUploadedFile('image/*');
 }
 
 export function useObjectURL(
-  data: Uint8Array | null,
+  data: Uint8Array<ArrayBuffer> | null,
   contentType: string | undefined
 ) {
   const [url, setUrl] = useState<string | null>(null);
@@ -64,7 +64,7 @@ export function useObjectURL(
 // TODO: button labels ("Choose file", "Remove") need i18n support
 export function ImageFieldInput(
   props: FormFieldInputProps<{
-    data: Uint8Array;
+    data: Uint8Array<ArrayBuffer>;
     extension: string;
     filename: string;
   } | null> & {

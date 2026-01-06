@@ -27,9 +27,9 @@ export function deserializeProps(
           });
           return schema.parse(value, {
             asset: filename
-              ? schema.directory
-                ? state.otherFiles.get(schema.directory)?.get(filename)
-                : state.extraFiles.get(filename)
+              ? ((schema.directory
+                  ? state.otherFiles.get(schema.directory)?.get(filename)
+                  : state.extraFiles.get(filename)) as Uint8Array<ArrayBuffer>)
               : undefined,
             slug: state.slug,
           });

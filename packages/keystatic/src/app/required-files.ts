@@ -19,14 +19,14 @@ function splitFrontmatter(data: Uint8Array) {
 }
 
 export function loadDataFile(
-  data: Uint8Array,
+  data: Uint8Array<ArrayBuffer>,
   formatInfo: FormatInfo,
   requireFrontmatter = false
 ): {
   loaded: JsonYamlValue;
   extraFakeFile?: {
     path: string;
-    contents: Uint8Array;
+    contents: Uint8Array<ArrayBuffer>;
   };
 } {
   const parse = formatInfo.data === 'json' ? JSON.parse : load;

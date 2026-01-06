@@ -6,7 +6,7 @@ export type KeystaticRequest = {
 };
 
 export type KeystaticResponse = ResponseInit & {
-  body: Uint8Array | string | null;
+  body: Uint8Array<ArrayBuffer> | string | null;
 };
 
 export function redirect(

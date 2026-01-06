@@ -32,7 +32,7 @@ function OtherEditor({ editor }: { editor: Editor }) {
       ] as any
   );
   return (
-    <Slate editor={editor} onChange={setVal} value={val}>
+    <Slate editor={editor} onChange={setVal} initialValue={val}>
       <Editable
         renderElement={({ element, attributes, children }) => {
           return (element as any).isHeading ? (

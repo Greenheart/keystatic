@@ -25,8 +25,8 @@ export function image<IsRequired extends boolean | undefined>({
    */
   transformFilename?: (originalFilename: string) => string;
 } & RequiredValidation<IsRequired>): AssetFormField<
-  { data: Uint8Array; extension: string; filename: string } | null,
-  | { data: Uint8Array; extension: string; filename: string }
+  { data: Uint8Array<ArrayBuffer>; extension: string; filename: string } | null,
+  | { data: Uint8Array<ArrayBuffer>; extension: string; filename: string }
   | (IsRequired extends true ? never : null),
   string | (IsRequired extends true ? never : null)
 > {

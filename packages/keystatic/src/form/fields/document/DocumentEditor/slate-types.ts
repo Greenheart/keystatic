@@ -74,7 +74,7 @@ type ComponentProp = {
 
 type Image = {
   type: 'image';
-  src: { filename: string; content: Uint8Array };
+  src: { filename: string; content: Uint8Array<ArrayBuffer> };
   alt: string;
   title: string;
 };

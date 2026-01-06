@@ -434,7 +434,7 @@ const HeadingMenu = (props: { headingType: NodeType }) => {
         isDisabled={menuState === 'disabled'}
         selectedKey={menuState === 'disabled' ? 'normal' : menuState.toString()}
         onSelectionChange={selected => {
-          let key = headingMenuVals.get(selected);
+          let key = selected && headingMenuVals.get(selected);
           if (key === 'normal') {
             runCommand(setBlockType(nodes.paragraph));
           } else if (key) {

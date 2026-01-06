@@ -83,7 +83,7 @@ messageHandlers[messageSubDocSync] = (
       provider
     );
     if (emitSynced && syncMessageType === syncProtocol.messageYjsSyncStep2) {
-      subDoc.emit('sync', [true]);
+      subDoc.emit('sync', [true, subDoc]);
     }
   }
 };
@@ -203,7 +203,10 @@ const setupWS = (provider: WebsocketProvider, WS: typeof WebSocket) => {
   }
 };
 
-const broadcastMessage = (provider: WebsocketProvider, buf: ArrayBuffer) => {
+const broadcastMessage = (
+  provider: WebsocketProvider,
+  buf: Uint8Array<ArrayBuffer>
+) => {
   if (provider.ws && provider.wsconnected) {
     provider.ws?.send(buf);
   }
@@ -290,9 +293,9 @@ export class WebsocketProvider {
         removed,
         loaded,
       }: {
-        added: Y.Doc[];
-        removed: Y.Doc[];
-        loaded: Y.Doc[];
+        added: Set<Y.Doc>;
+        removed: Set<Y.Doc>;
+        loaded: Set<Y.Doc>;
       }) => {
         added.forEach(subdoc => {
           this.subdocs.set(subdoc.guid, subdoc);
@@ -427,7 +430,7 @@ export class WebsocketProvider {
     if (this.#synced !== state) {
       this.#synced = state;
       this.onSynced(state);
-      this.doc.emit('sync', [state]);
+      this.doc.emit('sync', [state, this.doc]);
     }
   }
 

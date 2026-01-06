@@ -119,6 +119,9 @@ export default defineConfig(
             vars: 'all',
           },
         ],
+        '@typescript-eslint/no-empty-object-type': {
+          allowObjectTypes: 'always',
+        },
         quotes: [
           ERROR,
           'single',

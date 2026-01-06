@@ -300,6 +300,8 @@ function useBlockPopover(
     popoverProps: mergeProps(overlayProps, positionProps),
     underlayProps,
     updatePosition,
+    // TODO: Maybe replace this with a better value to allow animations to work as expected.
+    triggerAnchorPoint: null,
   };
 }
 

@@ -43,7 +43,7 @@ export function setBlobToPersistedCache(sha: string, val: Uint8Array) {
 export async function getBlobFromPersistedCache(sha: string) {
   const stored = await get(sha, getBlobStore());
   if (stored instanceof Uint8Array) {
-    return stored;
+    return stored as Uint8Array<ArrayBuffer>;
   }
 }
 let _storedTreeCache: Map<string, StoredTreeEntry[]> | undefined;

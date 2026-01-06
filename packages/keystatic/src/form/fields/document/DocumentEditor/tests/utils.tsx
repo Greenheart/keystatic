@@ -1,7 +1,7 @@
 import { act, render } from '@testing-library/react';
 import { diff } from 'jest-diff';
 import { plugins, Plugin, format } from '@vitest/pretty-format';
-import { ReactElement, createElement, MutableRefObject, useState } from 'react';
+import { ReactElement, createElement, RefObject, useState } from 'react';
 import { Editor, Node, Path, Text, Range } from 'slate';
 import { Slate } from 'slate-react';
 
@@ -16,6 +16,7 @@ import { expect } from '@jest/globals';
 
 export { __jsx as jsx } from './jsx/namespace';
 
+// @ts-expect-error printShadowRoot is defined in @vitest/pretty-format but missing in @jest/globals
 expect.addSnapshotSerializer(plugins.ReactElement);
 
 let oldConsoleError = console.error;
@@ -162,7 +163,7 @@ function EditorComp({
   const [val, setVal] = useState(editor.children);
   return (
     <KeystarProvider>
-      <Slate editor={editor} value={val} onChange={setVal}>
+      <Slate editor={editor} initialValue={val} onChange={setVal}>
         <ToolbarStateProvider
           componentBlocks={componentBlocks}
           editorDocumentFeatures={documentFeatures}
@@ -189,7 +190,7 @@ export const makeEditor = (
     documentFeatures?: DocumentFeatures;
     componentBlocks?: Record<string, ComponentBlock>;
     normalization?: 'disallow-non-normalized' | 'normalize' | 'skip';
-    isShiftPressedRef?: MutableRefObject<boolean>;
+    isShiftPressedRef?: RefObject<boolean>;
     skipRenderingDOM?: boolean;
   } = {}
 ): Editor & { container?: HTMLElement } => {

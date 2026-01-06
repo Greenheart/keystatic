@@ -44,7 +44,7 @@ export function deserializeFiles(
         typeof documentFeatures.images.directory === 'string'
           ? otherFiles.get(fixPath(documentFeatures.images.directory))
           : files
-      )?.get(filename);
+      )?.get(filename) as Uint8Array<ArrayBuffer>;
       if (!content) {
         return {
           type: 'paragraph',
@@ -95,9 +95,9 @@ function deserializeProps(
         });
         return schema.parse(value, {
           asset: filename
-            ? schema.directory
-              ? otherFiles.get(schema.directory)?.get(filename)
-              : files.get(filename)
+            ? ((schema.directory
+                ? otherFiles.get(schema.directory)?.get(filename)
+                : files.get(filename)) as Uint8Array<ArrayBuffer>)
             : undefined,
           slug,
         });

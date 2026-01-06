@@ -280,7 +280,7 @@ const HeadingMenu = ({
         isDisabled={isDisabled}
         selectedKey={selected}
         onSelectionChange={selected => {
-          let key = headingMenuVals.get(selected);
+          let key = selected && headingMenuVals.get(selected);
           if (key === 'normal') {
             Editor.withoutNormalizing(editor, () => {
               Transforms.unsetNodes(editor, 'level', {

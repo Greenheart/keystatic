@@ -34,8 +34,8 @@ export function serializeMarkdoc(
     slug: opts.slug,
   });
 
-  const other = new Map<string, Uint8Array>();
-  const external = new Map<string, Map<string, Uint8Array>>();
+  const other = new Map<string, Uint8Array<ArrayBuffer>>();
+  const external = new Map<string, Map<string, Uint8Array<ArrayBuffer>>>();
   for (const file of extraFiles) {
     if (file.parent === undefined) {
       other.set(file.path, file.contents);

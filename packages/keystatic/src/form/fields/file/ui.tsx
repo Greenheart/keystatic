@@ -11,7 +11,7 @@ import { getUploadedFile, useObjectURL } from '../image/ui';
 // TODO: button labels ("Choose file", "Remove", "Download") need i18n support
 export function FileFieldInput(
   props: FormFieldInputProps<{
-    data: Uint8Array;
+    data: Uint8Array<ArrayBuffer>;
     extension: string;
     filename: string;
   } | null> & {
