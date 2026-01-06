@@ -1,6 +1,6 @@
 'use client';
 import copy from 'clipboard-copy';
-import { createUrl } from 'playroom/utils';
+import { createUrl } from 'playroom';
 import { ReactNode, useEffect, useId, useState, type JSX } from 'react';
 
 import { ActionButton } from '@keystar/ui/button';
