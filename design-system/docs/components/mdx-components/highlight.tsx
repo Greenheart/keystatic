@@ -1,5 +1,9 @@
 import rangeParser from 'parse-numeric-range';
-import PrismHighlight, { Language, Prism } from 'prism-react-renderer';
+import {
+  Highlight as PrismHighlight,
+  Language,
+  Prism,
+} from 'prism-react-renderer';
 
 import { Box } from '@keystar/ui/layout';
 
@@ -14,7 +18,6 @@ interface HighlightProps {
 }
 
 ['js', 'jsx', 'ts', 'tsx'].forEach(lang => {
-  // @ts-expect-error: Property 'insertBefore' does not exist on type 'LanguageDict'.
   Prism.languages.insertBefore(lang, 'template-string', {
     'gql-template-string': {
       pattern: /gql`[^`]*`/,
@@ -45,7 +48,7 @@ export function Highlight({
   const shouldHighlightLine = getShouldHighlightLine(emphasis);
   return (
     <PrismHighlight
-      Prism={Prism}
+      prism={Prism}
       theme={theme}
       code={code}
       language={isLanguage(language) ? language : 'tsx'}

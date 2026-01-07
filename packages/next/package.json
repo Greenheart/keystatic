@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@keystatic/core": "workspace:^",
-    "next": "~15.1.11",
+    "next": "~16.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },

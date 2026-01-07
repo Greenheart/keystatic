@@ -1,12 +1,12 @@
 import { types } from '@storybook/addons';
-import { addons } from '@storybook/manager-api';
+import { addons } from 'storybook/manager-api';
 import { getQueryParams } from '@storybook/client-api';
 import {
   IconButton,
   Icons,
   TooltipLinkList,
   WithTooltip,
-} from '@storybook/components';
+} from 'storybook/internal/components';
 import React, { useEffect, useState } from 'react';
 
 import { locales } from '../../constants';

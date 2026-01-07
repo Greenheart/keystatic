@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/nextjs';
 
 import { Box, Divider, Flex, Grid } from '@keystar/ui/layout';
 import { css, tokenSchema } from '@keystar/ui/style';

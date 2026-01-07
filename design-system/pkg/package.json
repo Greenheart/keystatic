@@ -1577,7 +1577,7 @@
     "@types/facepaint": "^1.2.5",
     "@types/react-dom": "^19.2.3",
     "lucide-static": "^0.562.0",
-    "next": "~15.1.11",
+    "next": "~16.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "svgo": "^4.0.0",

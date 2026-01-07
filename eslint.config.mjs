@@ -5,6 +5,7 @@ import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginReactCompiler from 'eslint-plugin-react-compiler';
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks';
+import eslintPluginStorybook from 'eslint-plugin-storybook';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintConfigNext from 'eslint-config-next';
 
@@ -69,6 +70,7 @@ export default defineConfig(
         'react-hooks': eslintPluginReactHooks,
         'react-compiler': eslintPluginReactCompiler,
         '@typescript/eslint': tseslint.plugin,
+        storybook: eslintPluginStorybook,
       },
       settings: {
         react: { version: 'detect' },

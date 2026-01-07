@@ -28,13 +28,13 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "emery": "^1.4.4",
-    "next": "~15.1.11",
+    "next": "~16.1.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-focus-lock": "^2.13.7",
     "shiki": "^0.14.7",
     "typescript": "^5.9.3",
-    "vercel": "^33.7.1"
+    "vercel": "^50.1.6"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",

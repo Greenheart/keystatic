@@ -22,7 +22,7 @@
   "devDependencies": {
     "@ts-gql/compiler": "^0.16.8",
     "@ts-gql/next": "^17.0.1",
-    "next": "~15.1.11",
+    "next": "~16.1.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
